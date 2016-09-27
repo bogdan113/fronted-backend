@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+
+        {% for error in form.non_field_errors %}
+            <div>{{ error }}</div>
+        {% endfor %}
+
+        {% for error in form.username.errors %}
+            <div>{{ error }}</div>
+        {% endfor %}
+
+        {% for error in form.password.errors %}
+            <div>{{ error }}</div>
+        {% endfor %}
+
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username"
+            value="{{ form.username.value|default:"" }}">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div>
+            <input type="submit" value="Login">
+        </div>
+    </form>
+</body>
+</html>
